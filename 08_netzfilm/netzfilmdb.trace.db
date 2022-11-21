@@ -1,0 +1,4 @@
+2022-10-02 14:46:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "create sequence hibernate_sequence [*]start 1 increment 1"
+Syntax error in SQL statement "create sequence hibernate_sequence [*]start 1 increment 1"; SQL statement:
+create sequence hibernate_sequence start 1 increment 1 [42000-214]
