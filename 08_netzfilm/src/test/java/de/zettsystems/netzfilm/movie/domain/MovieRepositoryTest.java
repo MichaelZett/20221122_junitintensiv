@@ -26,7 +26,7 @@ class MovieRepositoryTest {
     void findByMovieId() {
         // Given
         Movie movie = new Movie("Film", LocalDate.now());
-        Movie persisted = testEntityManager.persist(movie);
+        Movie persisted = testEntityManager.persistAndFlush(movie);
 
         // When
         Optional<Movie> found = testee.findByMovieId(persisted.getMovieId());
