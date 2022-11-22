@@ -1,9 +1,18 @@
 package de.zettsystems;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.TestReporter;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // Wir wollen das Konto über alle Methoden testen
@@ -50,7 +59,7 @@ class AccountTest {
 
     @Order(4)
     @Test
-    @DisplayName("We do allow negative withdrawals.")
+    @DisplayName("We do not allow negative withdrawals.")
     void checkNegativeWithdraw(TestInfo info, TestReporter testReporter) {
         testReporter.publishEntry(info.getDisplayName());
 
@@ -60,7 +69,7 @@ class AccountTest {
 
     @Order(5)
     @Test
-    @DisplayName("We do allow negative fees.")
+    @DisplayName("We do not allow negative fees.")
     void checkNegativeFee(TestInfo info, TestReporter testReporter) {
         testReporter.publishEntry(info.getDisplayName());
 
