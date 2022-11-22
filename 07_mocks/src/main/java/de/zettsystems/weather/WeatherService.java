@@ -15,14 +15,32 @@ public class WeatherService {
         Status temperature = temperatureService.measureTemperature();
         Status wind = windService.measureWind();
         Status rain = rainfallService.measureRain();
+        int goods = count(Status.GOOD, temperature, wind, rain);
+        int bads = count(Status.BAD, temperature, wind, rain);
 
-        if (Status.GOOD == temperature && Status.GOOD == wind && Status.GOOD == rain) {
+        if (goods == 3) {
             return Status.GOOD;
-        } else if (Status.BAD == temperature || Status.BAD == wind || Status.BAD == rain) {
+        } else if (bads >= 2) {
+            return Status.BAD;
+        } else if (bads == 1 && goods == 0) {
             return Status.BAD;
         } else {
             return Status.OK;
         }
 
+    }
+
+    private int count(Status status, Status temperature, Status wind, Status rain) {
+        int result = 0;
+        if (status == temperature) {
+            result++;
+        }
+        if (status == wind) {
+            result++;
+        }
+        if (status == rain) {
+            result++;
+        }
+        return result;
     }
 }
